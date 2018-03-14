@@ -61,19 +61,6 @@ public class JumpActivity extends AppCompatActivity{
         characterJumpAnimation();
 //        スタートボタンを押したらGameIsStartきりかえ
         startbuttonPush();
-//        キャラと障害物がぶつからないか
-//        if(GameIsStart) {
-//            //        槍が画面右に流れるアニメ
-//            yariAnimationv();
-//            Log.d("スタート判定","スタートしました");
-//            if(JumpIsTrue){
-//
-//            }else{
-//                butukaru();
-//            }
-//        }else{
-//            System.out.println("スタートしてません");
-//        }
     }
 
     @Override
@@ -94,14 +81,6 @@ public class JumpActivity extends AppCompatActivity{
                 );
                 yariAnimation.setDuration(3000);
                 yariImage.startAnimation(yariAnimation);
-                int yariX = (int)yariImage.getX();
-                int yariY = (int)yariImage.getY();
-                Log.d("槍座標","槍ｘ"+yariX+":"+"槍Y"+yariY);
-
-                nekoView = findViewById(R.id.neko);
-                int charaX = (int)nekoView.getX();
-                int charaY = (int)nekoView.getY();
-                Log.d("ねこ座標","ねこx"+charaX+"ねこy"+charaY);
                 yariAnimationv();
             }
 
@@ -183,10 +162,14 @@ public class JumpActivity extends AppCompatActivity{
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run(){
+                Log.d("判定","呼び出されている");
+                Log.d("判定","猫"+String.valueOf(charaX+charaWidthHref));
+                Log.d("判定","槍"+String.valueOf(yariX));
                 if(yariX >= charaX+charaWidthHref){
                     Log.d("判定","当たった");
                 }
+                hitCharaAndYari();
             }
-        },1000);
+        },100);
     }
 }
